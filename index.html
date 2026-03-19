@@ -1157,29 +1157,19 @@
     const successEl = document.getElementById('form-success');
     const errorEl = document.getElementById('form-error');
 
-    // ─── FORMSPREE SETUP ───────────────────────────────────────────
-    // 1. Go to https://formspree.io and sign up (free)
-    // 2. Create a new form — you'll get a URL like:
-    //    https://formspree.io/f/xyzabcde
-    // 3. Replace YOUR_FORMSPREE_ID below with the ID from that URL
-    const FORMSPREE_ID = "mpqyblnr";
-    // ───────────────────────────────────────────────────────────────
-
-    if (FORMSPREE_ID === "YOUR_FORMSPREE_ID") {
-      errorEl.textContent = "Contact form not yet configured — please email directly.";
-      errorEl.style.display = 'block';
-      return;
-    }
+    const WEB3FORMS_KEY = "6ce604ff-5f5d-4878-9340-9c51a0154bb5";
 
     btn.textContent = "Sending...";
     btn.disabled = true;
     errorEl.style.display = 'none';
 
     try {
-      const res = await fetch(`https://formspree.io/f/${FORMSPREE_ID}`, {
+      const formData = new FormData(form);
+      formData.append("access_key", WEB3FORMS_KEY);
+      const res = await fetch("https://api.web3forms.com/submit", {
         method: "POST",
         headers: { "Accept": "application/json" },
-        body: new FormData(form)
+        body: formData
       });
       if (res.ok) {
         successEl.style.display = 'block';
@@ -1198,6 +1188,5 @@
     }
   }
 </script>
-
 <style>
   .project-links { display:
