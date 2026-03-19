@@ -1157,34 +1157,32 @@
     const successEl = document.getElementById('form-success');
     const errorEl = document.getElementById('form-error');
 
-    const WEB3FORMS_KEY = "6ce604ff-5f5d-4878-9340-9c51a0154bb5";
-
     btn.textContent = "Sending...";
     btn.disabled = true;
     errorEl.style.display = 'none';
+    successEl.style.display = 'none';
 
-    try {
-      const formData = new FormData(form);
-      formData.append("access_key", WEB3FORMS_KEY);
-      const res = await fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        headers: { "Accept": "application/json" },
-        body: formData
-      });
-      if (res.ok) {
-        successEl.style.display = 'block';
-        form.reset();
-        btn.textContent = "Send message →";
-        btn.disabled = false;
-        setTimeout(() => successEl.style.display = 'none', 6000);
-      } else {
-        throw new Error("Failed");
-      }
-    } catch {
+    const formData = new FormData(form);
+    formData.append("access_key", "6ce604ff-5f5d-4878-9340-9c51a0154bb5");
+
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Accept": "application/json" },
+      body: formData
+    });
+
+    const data = await res.json();
+
+    btn.textContent = "Send message →";
+    btn.disabled = false;
+
+    if (data.success) {
+      successEl.style.display = 'block';
+      form.reset();
+      setTimeout(() => successEl.style.display = 'none', 6000);
+    } else {
       errorEl.textContent = "Something went wrong — please email directly.";
       errorEl.style.display = 'block';
-      btn.textContent = "Send message →";
-      btn.disabled = false;
     }
   }
 </script>
