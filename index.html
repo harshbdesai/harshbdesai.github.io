@@ -1087,6 +1087,15 @@
         { label: "README (.pdf)", file: "README.pdf" }
       ]
     },
+     {
+      tag: "Data Engineering · Crypto Markets",
+      title: "Crypto Market ETL Pipeline",
+      desc: "End-to-end data engineering pipeline that ingests live cryptocurrency market data from the CoinGecko public API, runs it through a modular Extract → Transform → Load process, and writes clean records into PostgreSQL. Automated with Apache Airflow DAGs on a 6-hour schedule with retry logic, audit logging, and idempotent upserts.",
+      stack: ["Python", "Apache Airflow", "PostgreSQL", "REST API", "ETL"],
+      downloads: [
+        { label: "Github", link: "https://github.com/harshbdesai/Crypto-Coin-ETL" }
+      ]
+    },
     {
       tag: "Data Engineering · Capital One",
       title: "Client Segmentation Pipeline Rebuild",
@@ -1098,12 +1107,6 @@
       title: "Interchange Negotiation Infrastructure",
       desc: "Optimized the data infrastructure supporting Visa and Mastercard interchange contract negotiations via targeted SQL optimization, reducing analysis time from 12 hours to 3 and enabling faster, more agile contract testing.",
       stack: ["SQL", "ETL", "Data Modeling", "Snowflake"]
-    },
-    {
-      tag: "BI & Automation · DMI",
-      title: "Tableau Server Governance Automation",
-      desc: "Automated Tableau Server data governance audits using Python, eliminating manual audit overhead and recovering approximately 8 hours of manual effort per week while improving overall data quality standards.",
-      stack: ["Python", "Tableau", "Data Governance", "Automation"]
     }
   ];
 
